@@ -1,5 +1,6 @@
 const retext = require('retext');
 const readability = require('retext-readability');
+const passive = require('retext-passive')
 const _ = require('lodash')
 
 function getName(name){
@@ -10,8 +11,7 @@ function mapEntry(src){
   return {
     actual: src.actual,
     reason: src.message,
-    location: src.location,
-    confidence: src.confidence
+    location: src.location
   }
 }
 
@@ -32,13 +32,12 @@ function transformResults(results) {
 function generate(text) {
   var results;
   retext()
-    .use(readability, {
-      age: 9
-    })
+    .use(readability, { age: 9 })
+    .use(passive)
     .process(text, function(err, file) {
       results = transformResults(file.messages);
     });
-  console.debug(results);
+    // console.dir(results,  { depth: null })
   return results;
 };
 

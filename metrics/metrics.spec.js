@@ -10,8 +10,7 @@ describe('Metrics', function() {
     chai.request(server)
       .put('/metrics')
       .send({
-        content: 'Formula to detect the grade level of text according to the Flesch–Kincaid Grade Level.\n' +
-          'Bluebird runs on a wide variety of browsers including older versions.'
+        content: 'Formula to detect the grade level of text according to the Flesch–Kincaid Grade Level.'
       })
       .end(function(err, res) {
         expect(res).to.have.status(200);
@@ -19,38 +18,68 @@ describe('Metrics', function() {
         expect(res.body.readability).to
           .deep.eq({
             messages: [{
-                reason: 'Hard to read sentence (confidence: 6/7)',
+              reason: 'Hard to read sentence (confidence: 6/7)',
+              location: {
+                end: {
+                  column: 87,
+                  line: 1,
+                  offset: 86
+                },
+                start: {
+                  column: 1,
+                  line: 1,
+                  offset: 0
+                }
+              },
+              actual: 'Formula to detect the grade level of text according to the Flesch–Kincaid Grade Level.'
+            }],
+            count: 1
+          });
+        done();
+      })
+  });
+  it('should return metrics for passive', function(done) {
+    chai.request(server)
+      .put('/metrics')
+      .send({
+        content: 'He was withheld while we were being fed.'
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.passive).to
+          .deep.eq({
+            messages: [{
+                actual: 'withheld',
+                reason: 'Don’t use the passive voice',
                 location: {
-                  end: {
-                    column: 87,
-                    line: 1,
-                    offset: 86
-                  },
                   start: {
-                    column: 1,
                     line: 1,
-                    offset: 0
+                    column: 8,
+                    offset: 7
+                  },
+                  end: {
+                    line: 1,
+                    column: 16,
+                    offset: 15
                   }
                 },
-                confidence: '6/7',
-                actual: 'Formula to detect the grade level of text according to the Flesch–Kincaid Grade Level.'
               },
               {
-                reason: 'Hard to read sentence (confidence: 6/7)',
+                actual: 'fed',
+                reason: 'Don’t use the passive voice',
                 location: {
-                  end: {
-                    column: 70,
-                    line: 2,
-                    offset: 156
-                  },
                   start: {
-                    column: 1,
-                    line: 2,
-                    offset: 87
+                    line: 1,
+                    column: 37,
+                    offset: 36
+                  },
+                  end: {
+                    line: 1,
+                    column: 40,
+                    offset: 39
                   }
                 },
-                confidence: '6/7',
-                actual: 'Bluebird runs on a wide variety of browsers including older versions.',
               }
             ],
             count: 2
@@ -58,6 +87,5 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for grammar');
   it('should return metrics for equality too');
 });
