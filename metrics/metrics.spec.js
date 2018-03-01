@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 describe('Metrics', function() {
   it('should return metrics for readability', function(done) {
     chai.request(server)
-      .put('/metrics')
+      .post('/metrics')
       .send({
         content: 'Formula to detect the grade level of text according to the Flesch–Kincaid Grade Level.'
       })
@@ -40,7 +40,7 @@ describe('Metrics', function() {
   });
   it('should return metrics for passive', function(done) {
     chai.request(server)
-      .put('/metrics')
+      .post('/metrics')
       .send({
         content: 'He was withheld while we were being fed.'
       })
@@ -87,5 +87,6 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for equality too');
+  it('should return metrics for spelling');
+  it('should return metrics for repeated words');
 });
