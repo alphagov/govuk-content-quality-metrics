@@ -151,7 +151,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for indefinate articles', function(done) {
+  it('should return metrics for indefinite article', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -196,6 +196,38 @@ describe('Metrics', function() {
               }
             ],
             count: 2
+          });
+        done();
+      })
+  });
+  it('should return metrics for redundant acronymns', function(done) {
+    chai.request(server)
+      .post('/metrics')
+      .send({
+        content: 'Where can I find an ATM machine?'
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.redundant_acronyms).to
+          .deep.eq({
+            messages: [{
+              actual: 'ATM machine',
+              reason: 'Replace `ATM machine` with `ATM`',
+              location: {
+                start: {
+                  line: 1,
+                  column: 21,
+                  offset: 20
+                },
+                end: {
+                  line: 1,
+                  column: 32,
+                  offset: 31
+                }
+              }
+            }],
+            count: 1
           });
         done();
       })

@@ -6,6 +6,8 @@ const dictionary = require('dictionary-en-gb');
 const spell = require('retext-spell');
 const contractions = require('retext-contractions');
 const indefinateArticle = require('retext-indefinite-article');
+const redundantAcronyms = require('retext-redundant-acronyms');
+
 const _ = require('lodash');
 
 function getName(name) {
@@ -21,6 +23,7 @@ function generate(text) {
     .use(spell, dictionary)
     .use(contractions)
     .use(indefinateArticle)
+    .use(redundantAcronyms)
     .process(text)
     .then(transformResults);
 };
