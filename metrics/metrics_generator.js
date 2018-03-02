@@ -1,15 +1,16 @@
 const Promise = require("bluebird");
 const retext = Promise.promisifyAll(require('retext'));
-const readability = require('retext-readability');
-const passive = require('retext-passive');
-const dictionary = require('dictionary-en-gb');
-const spell = require('retext-spell');
 const contractions = require('retext-contractions');
-const indefinateArticle = require('retext-indefinite-article');
-const redundantAcronyms = require('retext-redundant-acronyms');
-const repeated = require('retext-repeated-words');
-const profanities = require('retext-profanities');
+const dictionary = require('dictionary-en-gb');
 const equality = require('retext-equality');
+const indefinateArticle = require('retext-indefinite-article');
+const passive = require('retext-passive');
+const profanities = require('retext-profanities');
+const redundantAcronyms = require('retext-redundant-acronyms');
+const readability = require('retext-readability');
+const repeated = require('retext-repeated-words');
+const simplify = require('retext-simplify');
+const spell = require('retext-spell');
 
 const _ = require('lodash');
 
@@ -29,6 +30,7 @@ function generate(text) {
     .use(profanities)
     .use(redundantAcronyms)
     .use(repeated)
+    .use(simplify)
     .use(spell, dictionary)
     .process(text)
     .then(transformResults);

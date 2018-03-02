@@ -327,4 +327,36 @@ describe('Metrics', function() {
         done();
       })
   });
+  it('should check for simpler alternatives', function(done) {
+    chai.request(server)
+      .post('/metrics')
+      .send({
+        content: "You can utilise a shorter word."
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.simplify).to
+          .deep.eq({
+            messages: [{
+              actual: 'utilise',
+              reason: 'Replace “utilise” with “use”',
+              location: {
+                start: {
+                  line: 1,
+                  column: 9,
+                  offset: 8
+                },
+                end: {
+                  line: 1,
+                  column: 16,
+                  offset: 15
+                }
+              }
+            }],
+            count: 1
+          });
+        done();
+      })
+  });
 });
