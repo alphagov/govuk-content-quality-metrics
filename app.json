@@ -1,8 +1,6 @@
 {
-  "name": "Start on Heroku: Node.js",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/heroku/node-js-getting-started",
-  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
+  "name": "Gov UK Content Quality Service",
+  "description": "POST the content to /metrics and get back a list of quality errors",
+  "repository": "https://github.com/alphagov/govuk-content-quality-metrics",
+  "keywords": ["govuk", "content", "quality"]
 }

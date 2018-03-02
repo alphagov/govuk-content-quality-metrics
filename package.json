@@ -1,17 +1,19 @@
 {
-  "name": "govuk-quality",
+  "name": "govuk-content-quality-metrics",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "POST the content to /metrics and get back a list of quality errors",
   "engines": {
     "node": "8.9.3"
   },
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha ./**/*.spec.js"
+    "test": "mocha ./**/*.spec.js",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
     "dictionary-en-gb": "^2.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
@@ -30,16 +32,28 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "chai-http": "^3.0.0"
+    "chai-http": "^3.0.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
+    "xo": "^0.20.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/alphagov/govuk-content-quality-metrics"
+  },
+  "xo": {
+    "space": true
+  },
+  "lint-staged": {
+    "*.js": [
+      "xo --fix",
+      "git add"
+    ]
   },
   "keywords": [
-    "node",
-    "heroku",
-    "express"
+    "govuk",
+    "content",
+    "quality"
   ],
   "license": "MIT"
 }
