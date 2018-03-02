@@ -20,6 +20,7 @@
     "retext-contractions": "^2.1.2",
     "retext-indefinite-article": "^1.1.3",
     "retext-passive": "^1.3.0",
+    "retext-profanities": "^4.4.0",
     "retext-readability": "^4.2.0",
     "retext-redundant-acronyms": "^1.2.1",
     "retext-spell": "^2.3.1"

@@ -232,4 +232,36 @@ describe('Metrics', function() {
         done();
       })
   });
+  it('should return metrics for profanities', function(done) {
+    chai.request(server)
+      .post('/metrics')
+      .send({
+        content: 'Who gives a rats arse?'
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.profanities).to
+          .deep.eq({
+            messages: [{
+              actual: 'arse',
+              reason: 'Don’t use “arse”, it’s profane',
+              location: {
+                start: {
+                  line: 1,
+                  column: 18,
+                  offset: 17
+                },
+                end: {
+                  line: 1,
+                  column: 22,
+                  offset: 21
+                }
+              }
+            }],
+            count: 1
+          });
+        done();
+      })
+  });
 });

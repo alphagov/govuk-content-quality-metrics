@@ -7,6 +7,7 @@ const spell = require('retext-spell');
 const contractions = require('retext-contractions');
 const indefinateArticle = require('retext-indefinite-article');
 const redundantAcronyms = require('retext-redundant-acronyms');
+const profanities = require('retext-profanities');
 
 const _ = require('lodash');
 
@@ -24,6 +25,7 @@ function generate(text) {
     .use(contractions)
     .use(indefinateArticle)
     .use(redundantAcronyms)
+    .use(profanities)
     .process(text)
     .then(transformResults);
 };
