@@ -264,4 +264,35 @@ describe('Metrics', function() {
         done();
       })
   });
+  it('should return metrics for equality', function(done) {
+    chai.request(server)
+      .post('/metrics')
+      .send({
+        content: "I didn't want his opinion."
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.equality).to
+          .deep.eq({
+            messages: [{
+              reason: '`his` may be insensitive, use `their`, `theirs`, `them` instead',
+              location: {
+                start: {
+                  line: 1,
+                  column: 15,
+                  offset: 14
+                },
+                end: {
+                  line: 1,
+                  column: 18,
+                  offset: 17
+                }
+              }
+            }],
+            count: 1
+          });
+        done();
+      })
+  });
 });

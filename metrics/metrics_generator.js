@@ -8,6 +8,7 @@ const contractions = require('retext-contractions');
 const indefinateArticle = require('retext-indefinite-article');
 const redundantAcronyms = require('retext-redundant-acronyms');
 const profanities = require('retext-profanities');
+const equality = require('retext-equality');
 
 const _ = require('lodash');
 
@@ -23,6 +24,7 @@ function generate(text) {
     .use(passive)
     .use(spell, dictionary)
     .use(contractions)
+    .use(equality)
     .use(indefinateArticle)
     .use(redundantAcronyms)
     .use(profanities)
