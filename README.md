@@ -1,5 +1,5 @@
 # govuk-content-quality-metrics
-API for content quality metrics
+Prototype of API for content quality metrics based on retext
 
 ## Usage
 
