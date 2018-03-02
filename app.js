@@ -1,7 +1,6 @@
-const express = require('express')
-const path = require('path')
-const metrics = require('./metrics/metrics');
+const express = require('express');
 const bodyParser = require('body-parser');
+const metrics = require('./metrics/metrics');
 
 const app = express()
   .use(bodyParser.json())
