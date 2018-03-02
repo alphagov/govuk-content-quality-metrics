@@ -1,7 +1,7 @@
 {
-  "name": "govuk-quality",
+  "name": "govuk-content-quality-metrics",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "POST the content to /metrics and get back a list of quality errors",
   "engines": {
     "node": "8.9.1"
   },
@@ -34,12 +34,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/alphagov/govuk-content-quality-metrics"
   },
   "keywords": [
-    "node",
-    "heroku",
-    "express"
+    "govuk",
+    "content",
+    "quality"
   ],
   "license": "MIT"
 }
