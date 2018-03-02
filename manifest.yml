@@ -1,0 +1,6 @@
+---
+applications:
+- name: govuk-content-quality-metrics
+  command: node bin/www
+  memory: 256M
+  buildpack: nodejs_buildpack
