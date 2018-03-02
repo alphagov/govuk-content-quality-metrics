@@ -24,6 +24,7 @@
     "retext-profanities": "^4.4.0",
     "retext-readability": "^4.2.0",
     "retext-redundant-acronyms": "^1.2.1",
+    "retext-repeated-words": "^1.2.1",
     "retext-spell": "^2.3.1"
   },
   "devDependencies": {

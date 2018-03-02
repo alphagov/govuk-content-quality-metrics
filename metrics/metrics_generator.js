@@ -7,6 +7,7 @@ const spell = require('retext-spell');
 const contractions = require('retext-contractions');
 const indefinateArticle = require('retext-indefinite-article');
 const redundantAcronyms = require('retext-redundant-acronyms');
+const repeated = require('retext-repeated-words');
 const profanities = require('retext-profanities');
 const equality = require('retext-equality');
 
@@ -21,13 +22,14 @@ function generate(text) {
     .use(readability, {
       age: 9
     })
-    .use(passive)
-    .use(spell, dictionary)
     .use(contractions)
     .use(equality)
     .use(indefinateArticle)
-    .use(redundantAcronyms)
+    .use(passive)
     .use(profanities)
+    .use(redundantAcronyms)
+    .use(repeated)
+    .use(spell, dictionary)
     .process(text)
     .then(transformResults);
 };

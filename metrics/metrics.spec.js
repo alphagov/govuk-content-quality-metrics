@@ -6,7 +6,7 @@ var expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('Metrics', function() {
-  it('should return metrics for readability', function(done) {
+  it('should check for readability', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -38,7 +38,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for passive', function(done) {
+  it('should check for passive voice', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -87,7 +87,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for spelling', function(done) {
+  it('should check for spelling', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -119,7 +119,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for contractions', function(done) {
+  it('should check for contractions', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -151,7 +151,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for indefinite article', function(done) {
+  it('should check for indefinite article', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -200,7 +200,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for redundant acronymns', function(done) {
+  it('should check for redundant acronymns', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -232,7 +232,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for profanities', function(done) {
+  it('should check for profanities', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -264,7 +264,7 @@ describe('Metrics', function() {
         done();
       })
   });
-  it('should return metrics for equality', function(done) {
+  it('should check for equality', function(done) {
     chai.request(server)
       .post('/metrics')
       .send({
@@ -287,6 +287,38 @@ describe('Metrics', function() {
                   line: 1,
                   column: 18,
                   offset: 17
+                }
+              }
+            }],
+            count: 1
+          });
+        done();
+      })
+  });
+  it('should check for repeated words', function(done) {
+    chai.request(server)
+      .post('/metrics')
+      .send({
+        content: "I didn't want want to repeat that word."
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.repeated_words).to
+          .deep.eq({
+            messages: [{
+              actual: 'want ',
+              reason: 'Expected `want` once, not twice',
+              location: {
+                start: {
+                  line: 1,
+                  column: 10,
+                  offset: 9
+                },
+                end: {
+                  line: 1,
+                  column: 19,
+                  offset: 18
                 }
               }
             }],
