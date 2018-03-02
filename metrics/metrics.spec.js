@@ -151,4 +151,53 @@ describe('Metrics', function() {
         done();
       })
   });
+  it('should return metrics for indefinate articles', function(done) {
+    chai.request(server)
+      .post('/metrics')
+      .send({
+        content: 'He should, a 8-year old boy, should have arrived a hour ago'
+      })
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.indefinite_article).to
+          .deep.eq({
+            messages: [{
+                actual: 'a',
+                reason: 'Use `an` before `8-year`, not `a`',
+                location: {
+                  start: {
+                    line: 1,
+                    column: 12,
+                    offset: 11
+                  },
+                  end: {
+                    line: 1,
+                    column: 13,
+                    offset: 12
+                  }
+                }
+              },
+              {
+                actual: 'a',
+                reason: 'Use `an` before `hour`, not `a`',
+                location: {
+                  start: {
+                    line: 1,
+                    column: 50,
+                    offset: 49
+                  },
+                  end: {
+                    line: 1,
+                    column: 51,
+                    offset: 50
+                  }
+                }
+              }
+            ],
+            count: 2
+          });
+        done();
+      })
+  });
 });

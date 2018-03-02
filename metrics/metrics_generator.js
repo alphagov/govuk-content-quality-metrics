@@ -5,10 +5,11 @@ const passive = require('retext-passive');
 const dictionary = require('dictionary-en-gb');
 const spell = require('retext-spell');
 const contractions = require('retext-contractions');
+const indefinateArticle = require('retext-indefinite-article');
 const _ = require('lodash');
 
 function getName(name) {
-  return _.replace(name, 'retext-', '')
+  return _.replace(name, 'retext-', '').replace('-', '_')
 };
 
 function generate(text) {
@@ -19,6 +20,7 @@ function generate(text) {
     .use(passive)
     .use(spell, dictionary)
     .use(contractions)
+    .use(indefinateArticle)
     .process(text)
     .then(transformResults);
 };
