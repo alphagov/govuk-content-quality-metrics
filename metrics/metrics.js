@@ -1,12 +1,16 @@
-var express = require('express');
-var router = express.Router();
-var generate = require('./metrics_generator')
+const express = require('express');
+// eslint-disable-next-line new-cap
+const router = express.Router();
+const generate = require('./metrics-generator');
 
-router.post('/metrics', function(req, res, next) {
+router.post('/metrics', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  generate(req.body.content)
-    .then((results) => res.json(results))
-    .catch((err) => console.dir(err,  { depth: null }))
+  try {
+    const results = await generate(req.body.content);
+    res.json(results);
+  } catch (err) {
+    console.dir(err, {depth: null});
+  }
 });
 
 module.exports = router;
