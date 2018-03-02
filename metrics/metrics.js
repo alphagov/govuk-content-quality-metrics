@@ -6,6 +6,7 @@ router.post('/metrics', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   generate(req.body.content)
     .then((results) => {
+      console.dir(results, {depth: null});
       res.json(results);
     })
     .catch((err) => console.dir(err,  { depth: null }))

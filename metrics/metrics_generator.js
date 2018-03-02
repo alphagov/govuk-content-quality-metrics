@@ -2,6 +2,9 @@ const Promise = require("bluebird");
 const retext = Promise.promisifyAll(require('retext'));
 const readability = require('retext-readability');
 const passive = require('retext-passive');
+const dictionary = require('dictionary-en-gb');
+const spell = require('retext-spell');
+const contractions = require('retext-contractions');
 const _ = require('lodash');
 
 function getName(name) {
@@ -14,6 +17,8 @@ function generate(text) {
       age: 9
     })
     .use(passive)
+    .use(spell, dictionary)
+    .use(contractions)
     .process(text)
     .then(transformResults);
 };
