@@ -5,7 +5,7 @@ Prototype of API for content quality metrics based on retext
 
 Make a POST request with "Content-Type" : "application/json" to.
 
-https://gov-quality-metrics.herokuapp.com/metrics
+https://govuk-content-quality-metrics.cloudapps.digital/metrics
 
 ## Testing
 
