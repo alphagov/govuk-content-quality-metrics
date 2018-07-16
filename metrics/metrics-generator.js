@@ -52,18 +52,7 @@ function transformResults(results) {
 }
 
 function createEntry(src) {
-  return {
-    messages: _.map(src, mapEntry),
-    count: src.length
-  };
-}
-
-function mapEntry(src) {
-  return {
-    actual: src.actual,
-    reason: src.message,
-    location: src.location
-  };
+  return src.length;
 }
 
 module.exports = generate;
