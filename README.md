@@ -7,6 +7,12 @@ Make a POST request with "Content-Type" : "application/json" to.
 
 https://govuk-content-quality-metrics.cloudapps.digital/metrics
 
+The posted body should have the format:
+
+```
+{"content": "the text content goes here. and another sentence"}
+```
+
 ## Testing
 
 Specs are written using mocha/chai/chaiHttp.
