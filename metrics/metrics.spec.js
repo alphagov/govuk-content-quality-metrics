@@ -19,7 +19,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.readability).to.eq(1);
+    expect(res.body.readability_count).to.eq(1);
   });
   it('should check for passive voice', async () => {
     const res = await chai.request(server)
@@ -29,7 +29,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.passive).to.eq(2);
+    expect(res.body.passive_count).to.eq(2);
   });
   it('should check for spelling', async () => {
     const res = await chai.request(server)
@@ -39,7 +39,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.spell).to.eq(1);
+    expect(res.body.spell_count).to.eq(1);
   });
   it('should check for contractions', async () => {
     const res = await chai.request(server)
@@ -49,7 +49,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.contractions).to.eq(1);
+    expect(res.body.contractions_count).to.eq(1);
   });
   it('should check for indefinite article', async () => {
     const res = await chai.request(server)
@@ -59,7 +59,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.indefinite_article).to.eq(2);
+    expect(res.body.indefinite_article_count).to.eq(2);
   });
   it('should check for redundant acronymns', async () => {
     const res = await chai.request(server)
@@ -69,7 +69,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.redundant_acronyms).to.eq(1);
+    expect(res.body.redundant_acronyms_count).to.eq(1);
   });
   it('should check for profanities', async () => {
     const res = await chai.request(server)
@@ -79,7 +79,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.profanities).to.eq(1);
+    expect(res.body.profanities_count).to.eq(1);
   });
   it('should check for equality', async () => {
     const res = await chai.request(server)
@@ -89,7 +89,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.equality).to.eq(1);
+    expect(res.body.equality_count).to.eq(1);
   });
   it('should check for repeated words', async () => {
     const res = await chai.request(server)
@@ -99,7 +99,7 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.repeated_words).to.eq(1);
+    expect(res.body.repeated_words_count).to.eq(1);
   });
   it('should check for simpler alternatives', async () => {
     const res = await chai.request(server)
@@ -109,6 +109,6 @@ describe('Metrics', () => {
       });
     expect(res).to.have.status(200);
     expect(res).to.be.json;
-    expect(res.body.simplify).to.eq(1);
+    expect(res.body.simplify_count).to.eq(1);
   });
 });

@@ -18,7 +18,7 @@ const spell = require('retext-spell');
 const _ = require('lodash');
 
 function getName(name) {
-  return _.replace(name, 'retext-', '').replace('-', '_');
+  return _.replace(name, 'retext-', '').replace('-', '_') + '_count';
 }
 
 async function generate(text) {
