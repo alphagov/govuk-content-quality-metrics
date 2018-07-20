@@ -1,7 +1,9 @@
+
 const Promise = require('bluebird');
 
 // eslint-disable-next-line no-use-extend-native/no-use-extend-native
 const retext = Promise.promisifyAll(require('retext'));
+/* eslint camelcase: ["error", {properties: "never"}] */
 
 const contractions = require('retext-contractions');
 const dictionary = require('dictionary-en-gb');
@@ -45,10 +47,22 @@ async function generate(text) {
 }
 
 function transformResults(results) {
-  return _.chain(results.messages)
+  const newValues = _.chain(results.messages)
     .groupBy(res => getName(res.source))
     .mapValues(createEntry)
     .value();
+  return _.assign({
+    readability_count: 0,
+    equality_count: 0,
+    indefinite_article_count: 0,
+    passive_count: 0,
+    profanities_count: 0,
+    redundant_acronyms_count: 0,
+    repeated_words_count: 0,
+    spell_count: 0,
+    contractions_count: 0,
+    simplify_count: 0
+  }, newValues);
 }
 
 function createEntry(src) {

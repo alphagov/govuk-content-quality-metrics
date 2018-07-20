@@ -20,6 +20,15 @@ describe('Metrics', () => {
     expect(res).to.have.status(200);
     expect(res).to.be.json;
     expect(res.body.readability_count).to.eq(1);
+    // Check for default values if no issues
+    expect(res.body.passive_count).to.eq(0);
+    expect(res.body.profanities_count).to.eq(0);
+    expect(res.body.repeated_words_count).to.eq(0);
+    expect(res.body.indefinite_article_count).to.eq(0);
+    expect(res.body.redundant_acronyms_count).to.eq(0);
+    expect(res.body.equality_count).to.eq(0);
+    expect(res.body.contractions_count).to.eq(0);
+    expect(res.body.simplify_count).to.eq(0);
   });
   it('should check for passive voice', async () => {
     const res = await chai.request(server)
@@ -30,6 +39,8 @@ describe('Metrics', () => {
     expect(res).to.have.status(200);
     expect(res).to.be.json;
     expect(res.body.passive_count).to.eq(2);
+    // Check for default values if no issues
+    expect(res.body.spell_count).to.eq(0);
   });
   it('should check for spelling', async () => {
     const res = await chai.request(server)

@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "POST the content to /metrics and get back a list of quality errors",
   "engines": {
-    "node": "8.9.3"
+    "node": "8.11.2"
   },
   "main": "index.js",
   "scripts": {
